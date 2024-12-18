@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
         this.loadClientes();
       },
       (error) => {
-        alert('Erro ao desativar cliente');
+        this.loadClientes();
       }
     );
   }

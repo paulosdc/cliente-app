@@ -17,6 +17,6 @@ export class ClienteService {
   }
 
   desativarCliente(cliente: Cliente): Observable<string> {
-    return this.http.put<string>(`${this.baseUrl}/${cliente.id}`, { cliente });
+    return this.http.delete<string>(`${this.baseUrl}/${cliente.id}`, { });
   }
 }
