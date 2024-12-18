@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <h2>Lista de Clientes</h2>
+
+  <table class="table table-bordered table-striped">
+      <thead>
+          <tr>
+              <th>CPF/CNPJ</th>
+              <th>Nome</th>
+              <th>Apelido</th>
+              <th>Status</th>
+              <th>Ações</th>
+          </tr>
+      </thead>
+      <tbody>
+          <tr *ngFor="let cliente of clientes; let i = index">
+              <td>{{ cliente.inscricao }}</td>
+              <td>{{ cliente.nome }}</td>
+              <td>{{ cliente.apelido }}</td>
+              <td>{{ cliente.status }}</td>
+              <td>
+                  <!--<button class="btn btn-warning" (click)="editarCliente(cliente)">Editar</button>
+                  <button class="btn btn-danger" (click)="desativarCliente(cliente)">Desativar</button>-->
+
+                  <button class="btn btn-warning">Editar</button>
+                  <button class="btn btn-danger" (click)="desativarCliente(cliente)">Desativar</button>
+              </td>
+          </tr>
+      </tbody>
+  </table>
+
+  <div class="d-flex justify-content-between">
+      <button class="btn btn-primary" (click)="prevPage()" [disabled]="currentPage === 0">
+          <img src="../../../assets/anterior.png" alt="Anterior">
+      </button>
+      <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage === totalPages - 1">
+          <img src="../../../assets/proximo.png" alt="Próximo">
+      </button>
+  </div>
+</div>
