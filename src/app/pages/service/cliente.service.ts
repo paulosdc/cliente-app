@@ -7,7 +7,7 @@ import { Cliente } from '../../model/Cliente';
   providedIn: 'root',
 })
 export class ClienteService {
-  private baseUrl = 'https://cliente-api-6acace0cf8b7.herokuapp.com/cliente';
+  private baseUrl = 'http://localhost:8080/cliente';
 
   constructor(private http: HttpClient) {}
 

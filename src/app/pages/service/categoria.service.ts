@@ -8,7 +8,7 @@ import { Categoria } from '../../model/Categoria';
   providedIn: 'root',
 })
 export class CategoriaService {
-  private baseUrl = 'https://cliente-api-6acace0cf8b7.herokuapp.com/categoria';
+  private baseUrl = 'http://localhost:8080/categoria';
 
   constructor(private http: HttpClient) {}
 
