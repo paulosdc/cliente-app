@@ -27,5 +27,9 @@ export class ClienteService {
   updateCliente(id: number, cliente: Cliente): Observable<string> {
     return this.http.put<string>(`${this.baseUrl}/${id}`, cliente, { responseType: 'text' as 'json' });
   }
+
+  criarCliente(cliente: Cliente): Observable<string> {
+    return this.http.post<string>(this.baseUrl, cliente, { responseType: 'text' as 'json' });
+  }
   
 }

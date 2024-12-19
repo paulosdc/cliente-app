@@ -1,30 +1,104 @@
-<h2>Gerenciar Emails</h2>
+<div style="padding: 10px;">
+  <h2 style="padding: 10px;" *ngIf="!showAddCategoria">Gerenciar Emails</h2>
+  <h2 style="padding: 10px;" *ngIf="showAddCategoria">Gerenciar Categorias</h2>
 
-<form [formGroup]="emailsForm">
-  <div formArrayName="emails">
-    <div *ngFor="let email of emails.controls; let i = index" [formGroupName]="i" class="email-item">
-      <div class="linha">
-        <strong>Nome:</strong>
-        <input matInput formControlName="nome" placeholder="Nome" />
+  <div *ngIf="!showAddCategoria">
+    <form [formGroup]="emailsForm" style="padding: 10px;">
+      <div formArrayName="emails">
+        <div *ngFor="let email of emails.controls; let i = index" [formGroupName]="i" class="email-item">
+          <div class="linha-container" style="background-color: aliceblue; border-radius: 5px; margin-bottom: 5px; padding: 10px;">
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input 
+                  matInput 
+                  formControlName="nome" 
+                  placeholder="Nome" 
+                  type="text"
+                  (input)="validateNome($event)"/>
+                  <span *ngIf="nomeError" style="color: red; font-size: 12px;">
+                    {{ nomeError }}
+                  </span>
+              </mat-form-field>
+            </div>
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>Email</mat-label>
+                <input
+                  matInput
+                  formControlName="email"
+                  placeholder="Email"
+                  [class.invalid]="!email.valid && email.touched"
+                />
+                <mat-error *ngIf="!email.valid && email.touched">
+                  {{ getErrorMessage('email', i) }}
+                </mat-error>
+              </mat-form-field>
+            </div>
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>Categoria</mat-label>
+                <mat-select formControlName="categoria">
+                  <mat-option *ngFor="let categoria of categorias" [value]="categoria.id">
+                    {{ categoria.nome }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="delete-button">
+              <button mat-icon-button color="warn" (click)="removeEmail(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="linha">
-        <strong>Email:</strong>
-        <input matInput formControlName="email" placeholder="Email" />
-      </div>
-      <div class="linha">
-        <strong>Categoria:</strong>
-        <select matInput formControlName="categoria">
-          <option *ngFor="let categoria of categorias" [value]="categoria.id">
-            {{ categoria.nome }}
-          </option>
-        </select>
-      </div>
-      <button mat-icon-button color="warn" (click)="removeEmail(i)">🗑️</button>
+    </form>
+
+    <div style="margin: 10px;">
+      <button mat-raised-button color="primary" (click)="addEmail()" style="width: 20%; margin-right: 10px;">Adicionar Email</button>
+      <button mat-raised-button color="accent" (click)="toggleAddCategoria()" style="width: 20%; margin-right: 10px;">Gerenciar categorias</button>
+      <button mat-raised-button color="warn" (click)="close()" style="width: 20%;">Fechar</button>
     </div>
   </div>
-</form>
 
-<div>
-  <button mat-raised-button color="primary" (click)="addEmail()" style="width: 20%;">Adicionar Email</button>
-  <button mat-raised-button (click)="close()" style="width: 20%;">Fechar</button>
+  <div *ngIf="showAddCategoria" style="margin: 10px; background-color: #f9f9f9; border-radius: 5px; padding: 10px;">
+    <h3>Adicionar Categoria</h3>
+    <mat-form-field appearance="fill" style="width: 70%; margin-right: 10px;">
+      <mat-label>Nome da Categoria</mat-label>
+      <input matInput [(ngModel)]="novaCategoria.nome" placeholder="Digite o nome da categoria" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="adicionarCategoria()">Adicionar</button>
+
+    <table mat-table [dataSource]="categorias" class="mat-elevation-z8" style="margin-top: 15px; width: 100%;">
+
+      <ng-container matColumnDef="nome">
+        <th mat-header-cell *matHeaderCellDef> Nome </th>
+        <td mat-cell *matCellDef="let categoria">
+          <input matInput [(ngModel)]="categoria.nome" placeholder="Editar nome da categoria" />
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="acoes">
+        <th mat-header-cell *matHeaderCellDef> Ações </th>
+        <td mat-cell *matCellDef="let categoria">
+          <button mat-icon-button color="primary" (click)="salvarCategoria(categoria)">
+            <mat-icon>save</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="excluirCategoria(categoria.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <div style="margin-top: 20px;">
+      <button mat-raised-button color="accent" (click)="toggleAddCategoria()" style="width: 20%;">
+        Voltar
+      </button>
+    </div>
+  </div>
 </div>

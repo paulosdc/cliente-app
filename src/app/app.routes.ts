@@ -5,5 +5,6 @@ import { ClienteComponent } from './pages/cliente/cliente.component';
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
   { path: 'home', component: HomeComponent },
-  { path: 'cliente/:id', component: ClienteComponent }
+  { path: 'cliente/:id', component: ClienteComponent },
+  { path: 'cliente', component: ClienteComponent }
 ];

@@ -1,84 +1,73 @@
 .container {
     display: flex;
     flex-direction: column;
-  }
-  
-  .cliente-info {
-    display: flex;
-    gap: 16px;
-  }
-  
-  .foto-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .foto-cliente {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-  
-  .dados-container {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
-  
-  .emails {
-    margin-left: 8px;
-  }
-  
-  .page-container {
-    padding: 20px;
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  
-  .foto-container {
-    width: 150px;
-    height: 150px;
-    border: 1px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-  }
-  
-  .foto-cliente {
-    max-width: 100%;
-    max-height: 100%;
-  }
-  
-  .info-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .linha {
-    margin: 10px 0;
-  }
-  
-  .botoes {
-    display: flex;
-    gap: 10px;
-    justify-content: flex-end;
-  }
+}
 
-  .mat-icon-button {
-    background: none !important;
-    box-shadow: none !important;
-    border: none !important;
-  }
-  
-  .mat-icon-button:hover {
-    background: none !important;
-  }
-  
+.cliente-info {
+  display: flex;
+  gap: 16px;
+}
+
+.foto-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.foto-cliente {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.dados-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.emails {
+  margin-left: 8px;
+}
+
+.page-container {
+  padding: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.foto-container {
+  width: 150px;
+  height: 150px;
+  border: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.foto-cliente {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.linha {
+  margin: 10px 0;
+}
+
+.botoes {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}

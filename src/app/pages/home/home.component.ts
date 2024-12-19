@@ -15,7 +15,15 @@ import { MatCardModule } from '@angular/material/card';
   standalone: true,
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
-  imports: [MatCardModule, MatTableModule, MatIconModule, MatButtonModule, MatSelectModule, MatFormFieldModule, CommonModule]
+  imports: [
+    MatCardModule, 
+    MatTableModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    MatSelectModule, 
+    MatFormFieldModule, 
+    CommonModule
+  ]
 })
 export class HomeComponent implements OnInit {
   clientes: Cliente[] = [];

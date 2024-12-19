@@ -15,5 +15,16 @@ export class CategoriaService {
   getCategorias(): Observable<Categoria[]> {
     return this.http.get<Categoria[]>(this.baseUrl);
   }
-  
+
+  criarCategoria(categoria: Categoria): Observable<string> {
+    return this.http.post<string>(this.baseUrl, categoria, { responseType: 'text' as 'json' });
+  }
+
+  atualizarCategoria(categoria: Categoria): Observable<string> {
+    return this.http.put<string>(`${this.baseUrl}/${categoria.id}`, categoria, { responseType: 'text' as 'json' });
+  }
+
+  deletarCategoria(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.baseUrl}/${id}`, { responseType: 'text' as 'json' });
+  }
 }
