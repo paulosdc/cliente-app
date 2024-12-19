@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatTableModule } from '@angular/material/table';
-import { CategoriaService } from '../service/categoria.service';
+import { CategoriaService } from '../../service/categoria.service';
 
 @Component({
   selector: 'app-email',

@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormArray, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ClienteService } from '../service/cliente.service';
+import { ClienteService } from '../../service/cliente.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { CommonModule } from '@angular/common';
 import { EmailComponent } from '../email/email.component';
-import { CategoriaService } from '../service/categoria.service';
+import { CategoriaService } from '../../service/categoria.service';
 import { Categoria } from '../../model/Categoria';
 import { of } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
