@@ -82,7 +82,7 @@ export class HomeComponent implements OnInit {
 
   updatePageSize(event: any): void {
     this.pageSize = event.value;
-    this.currentPage = 0; // Reset para a primeira página ao mudar o tamanho da página
+    this.currentPage = 0;
     this.loadClientes();
   }
 }
