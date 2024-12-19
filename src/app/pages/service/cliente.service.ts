@@ -19,4 +19,13 @@ export class ClienteService {
   desativarCliente(cliente: Cliente): Observable<string> {
     return this.http.delete<string>(`${this.baseUrl}/${cliente.id}`, { });
   }
+
+  getClienteById(id: number): Observable<Cliente> {
+    return this.http.get<Cliente>(`${this.baseUrl}/${id}`, { });
+  }
+
+  updateCliente(id: number, cliente: Cliente): Observable<string> {
+    return this.http.put<string>(`${this.baseUrl}/${id}`, cliente, { responseType: 'text' as 'json' });
+  }
+  
 }

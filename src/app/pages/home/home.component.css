@@ -11,3 +11,8 @@
     border-radius: 4px;
   }
   
+  .linha {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }

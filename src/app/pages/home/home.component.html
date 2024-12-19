@@ -1,39 +1,66 @@
-<div class="container mt-4">
-  <h2>Lista de Clientes</h2>
-
-  <table class="table table-bordered table-striped">
-      <thead>
-          <tr>
-              <th>CPF/CNPJ</th>
-              <th>Nome</th>
-              <th>Apelido</th>
-              <th>Status</th>
-              <th>Ações</th>
-          </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let cliente of clientes; let i = index">
-              <td>{{ cliente.inscricao }}</td>
-              <td>{{ cliente.nome }}</td>
-              <td>{{ cliente.apelido }}</td>
-              <td>{{ cliente.status }}</td>
-              <td>
-                  <!--<button class="btn btn-warning" (click)="editarCliente(cliente)">Editar</button>
-                  <button class="btn btn-danger" (click)="desativarCliente(cliente)">Desativar</button>-->
-
-                  <button class="btn btn-warning">Editar</button>
-                  <button class="btn btn-danger" (click)="desativarCliente(cliente)">Desativar</button>
-              </td>
-          </tr>
-      </tbody>
-  </table>
-
-  <div class="d-flex justify-content-between">
-      <button class="btn btn-primary" (click)="prevPage()" [disabled]="currentPage === 0">
-          <img src="../../../assets/anterior.png" alt="Anterior">
+<mat-card class="container mt-4">
+    <h2 style="margin-top: 10px; margin-left: 10px;">Lista de Clientes</h2>
+  
+    <div class="d-flex justify-content-between mb-4">
+      <button mat-icon-button color="primary" (click)="criarCliente()">
+        <mat-icon>add</mat-icon> 
       </button>
-      <button class="btn btn-primary" (click)="nextPage()" [disabled]="currentPage === totalPages - 1">
-          <img src="../../../assets/proximo.png" alt="Próximo">
-      </button>
-  </div>
-</div>
+    </div>
+    <mat-table [dataSource]="clientes" class="mat-elevation-z8">
+      <ng-container matColumnDef="inscricao">
+        <mat-header-cell *matHeaderCellDef> CPF/CNPJ </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{ cliente.inscricao }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="nome">
+        <mat-header-cell *matHeaderCellDef> Nome </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{ cliente.nome }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="apelido">
+        <mat-header-cell *matHeaderCellDef> Apelido </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{ cliente.apelido }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+        <mat-cell *matCellDef="let cliente"> {{ cliente.status }} </mat-cell>
+      </ng-container>
+  
+      <ng-container matColumnDef="acoes">
+        <mat-header-cell *matHeaderCellDef> Ações </mat-header-cell>
+        <mat-cell *matCellDef="let cliente">
+          <div class="d-flex justify-content-center">
+            <button mat-icon-button (click)="editarCliente(cliente.id)">
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button mat-icon-button (click)="desativarCliente(cliente)" [disabled]="cliente.status == 'DESATIVADO'">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-cell>
+      </ng-container>
+  
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 15px;">
+        <mat-form-field appearance="outline" style="margin-left: 15px; width: 17%;">
+            <mat-label>Resultados</mat-label>
+            <mat-select [(value)]="pageSize" (selectionChange)="updatePageSize($event)">
+                <mat-option *ngFor="let size of pageSizes" [value]="size">{{ size }}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    
+        <div style="display: flex;">
+            <button mat-icon-button (click)="prevPage()" [disabled]="currentPage === 0">
+                <mat-icon>chevron_left</mat-icon>
+            </button>
+            <button mat-icon-button (click)="nextPage()" [disabled]="currentPage === totalPages - 1">
+                <mat-icon>chevron_right</mat-icon>
+            </button>
+        </div>
+    </div>    
+  </mat-card>
+  

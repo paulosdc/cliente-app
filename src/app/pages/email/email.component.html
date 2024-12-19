@@ -1,0 +1,30 @@
+<h2>Gerenciar Emails</h2>
+
+<form [formGroup]="emailsForm">
+  <div formArrayName="emails">
+    <div *ngFor="let email of emails.controls; let i = index" [formGroupName]="i" class="email-item">
+      <div class="linha">
+        <strong>Nome:</strong>
+        <input matInput formControlName="nome" placeholder="Nome" />
+      </div>
+      <div class="linha">
+        <strong>Email:</strong>
+        <input matInput formControlName="email" placeholder="Email" />
+      </div>
+      <div class="linha">
+        <strong>Categoria:</strong>
+        <select matInput formControlName="categoria">
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.nome }}
+          </option>
+        </select>
+      </div>
+      <button mat-icon-button color="warn" (click)="removeEmail(i)">🗑️</button>
+    </div>
+  </div>
+</form>
+
+<div>
+  <button mat-raised-button color="primary" (click)="addEmail()" style="width: 20%;">Adicionar Email</button>
+  <button mat-raised-button (click)="close()" style="width: 20%;">Fechar</button>
+</div>

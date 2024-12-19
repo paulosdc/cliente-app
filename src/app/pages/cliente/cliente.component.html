@@ -1,1 +1,72 @@
-<p>cliente works!</p>
+<div class="page-container">
+  <mat-card class="container mt-4">
+    <form [formGroup]="clienteForm" (ngSubmit)="saveCliente()">
+      <div class="header">
+        <button mat-icon-button (click)="voltarParaLista()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+      </div>
+      <table class="info-table">
+        <tr>
+          <td>
+            <div class="foto-container">
+              <img
+                [src]="clienteForm.get('urlFoto')?.value"
+                alt="Foto do Cliente"
+                class="foto-cliente"
+              />
+            </div>
+          </td>
+          <td>
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>Inscrição</mat-label>
+                <input matInput formControlName="inscricao" placeholder="Inscrição" />
+              </mat-form-field>
+            </div>
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>Apelido</mat-label>
+                <input matInput formControlName="apelido" placeholder="Apelido" />
+              </mat-form-field>
+            </div>
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>Nome</mat-label>
+                <input matInput formControlName="nome" placeholder="Nome" />
+              </mat-form-field>
+            </div>
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                  <mat-option value="ATIVADO">ATIVADO</mat-option>
+                  <mat-option value="SUSPENSO">SUSPENSO</mat-option>
+                  <mat-option value="DESATIVADO">DESATIVADO</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+            <div class="linha">
+              <mat-form-field appearance="fill">
+                <mat-label>URL da Foto</mat-label>
+                <input matInput formControlName="urlFoto" placeholder="URL da Foto" />
+              </mat-form-field>
+            </div>
+          </td>
+        </tr>
+      </table>
+
+      <div class="linha">
+        <strong>Emails:</strong>
+        <button type="button" mat-icon-button color="primary" (click)="openModal()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+
+      <div class="botoes">
+        <button mat-raised-button color="primary" type="submit">Salvar</button>
+        <button mat-raised-button color="warn" (click)="desativarCliente()">Desativar</button>
+      </div>
+    </form>
+  </mat-card>
+</div>
